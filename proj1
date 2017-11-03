@@ -1,0 +1,68 @@
+//proj1 
+#include <iostream>
+#include <cstdlib>
+#include <cstring>
+using namespace std;
+class data
+{
+	public:
+		int rank=0;
+		string s;
+		string name;
+		float mid;
+		float final;
+		float homework;
+		float total(void)
+		{ return 0.3*(mid+final)+0.4*homework; }
+		float mean(void)
+		{ return (mid+final+homework)/3; }
+		
+	void showdata()
+	{   cout<<endl;
+		cout<<"ID:"<<s<<endl;
+		cout<<"Name:"<<name<<endl;
+		cout<<"Mid-term:"<<mid<<endl;
+		cout<<"Final-term:"<<final<<endl;
+		cout<<"Homework:"<<homework<<endl;
+		cout<<"Sem:"<<total()<<endl;
+		cout<<"Mean:"<<mean()<<endl; 
+	}
+};
+int main(void)
+{
+	data student[3];
+	for(int i=0;i<3;i++)
+	{
+		cout<<"ID:";
+		cin>>student[i].s;
+		cout<<"Name:";
+		cin>>student[i].name;
+		cout<<"Mid-term:";
+		cin>>student[i].mid;
+		cout<<"Final-term:";
+		cin>>student[i].final;
+		cout<<"Homework:";
+		cin>>student[i].homework;
+	}
+	float c[3];
+	for(int i=0;i<3;i++)
+	{ c[i]=student[i].total(); }
+	for(int i=0;i<3;i++)
+	{
+		for(int j=0;j<3;j++)
+		{
+			if(c[i]>c[j])
+			{ student[i].rank+=1; }
+		}
+	}
+	for(int j=2;j>=0;j--)
+	{	
+		for(int i=0;i<3;i++)
+		{
+			if(student[i].rank==j)
+			{ student[i].showdata(); }
+		}
+	}
+	system("pause");
+	return 0;
+}
